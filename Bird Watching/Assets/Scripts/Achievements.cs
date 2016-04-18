@@ -8,7 +8,7 @@ public class Achievements : MonoBehaviour {
 	public Text achievementText;
 	private float time = 0;
 	private Vector3 target = new Vector3(0, -115, 0);
-	private Vector3 hide = new Vector3(0, -190, 0);
+	private Vector3 hide = new Vector3(0, -450, 0);
 
 	// strings for achievement titles
 	private string defaultText = "Achievement!";
@@ -27,7 +27,7 @@ public class Achievements : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		raycastScript = GameObject.Find("Main Camera");
+		raycastScript = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
@@ -87,16 +87,17 @@ public class Achievements : MonoBehaviour {
 			raycastScript.GetComponent<RaycastScript>().bugFound == true || raycastScript.GetComponent<RaycastScript>().nonbirdFound == true || 
 			raycastScript.GetComponent<RaycastScript>().sunFound == true || raycastScript.GetComponent<RaycastScript>().nothingFound == true) 
 		{
-            if (achievementText.transform.position != target)
-                achievementText.transform.Translate(Vector3.up * Time.deltaTime, Space.World);
-				//achievementText.transform.Translate(0, 75, 0);
-			
-			time += Time.deltaTime;
-			if (time > 5) {
-				if (achievementText.transform.position != hide) {
-					//achievementText.transform.Translate(0, -190, 0); // wait for 5 seconds after displaying the achievement, then reset the text and hide it
-                    achievementText.transform.Translate(Vector3.up * Time.deltaTime * -1, Space.World);
-                    achievementText.text = defaultText;
+			if (achievementText.transform.position.y < target.y) {
+                achievementText.transform.Translate(Vector3.up * 10.0f * Time.deltaTime, Space.World);
+			}
+			else {
+				time += Time.deltaTime;
+				if (time > 5) {
+					if (achievementText.transform.position != hide) {
+						// wait for 5 seconds after displaying the achievement, then reset the text and hide it
+                    	achievementText.transform.Translate(Vector3.up * Time.deltaTime * -1, Space.World);
+                    	achievementText.text = defaultText;
+					}
 				}
 			}
 		}
