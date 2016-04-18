@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Achievements : MonoBehaviour {
 	//private RaycastScript raycastScript;
 	private GameObject raycastScript;
 	public Text achievementText;
 	private float time = 0;
-	private Vector3 target = new Vector3(0, -115, 0);
+	private Vector3 target = new Vector3(0, -100, 0);
 	private Vector3 hide = new Vector3(0, -450, 0);
 
 	// strings for achievement titles
@@ -24,6 +25,9 @@ public class Achievements : MonoBehaviour {
 	private string sunFoundText = " Sungazing";
 	private string nothingFoundText = " Missing the Point";
 	private string threeLikeBirdsFoundText = " Birds of a Feather";
+
+	public bool gotAchievement = false;
+	public bool rising = false;
 
 	// Use this for initialization
 	void Start () {
@@ -87,16 +91,42 @@ public class Achievements : MonoBehaviour {
 			raycastScript.GetComponent<RaycastScript>().bugFound == true || raycastScript.GetComponent<RaycastScript>().nonbirdFound == true || 
 			raycastScript.GetComponent<RaycastScript>().sunFound == true || raycastScript.GetComponent<RaycastScript>().nothingFound == true) 
 		{
-			if (achievementText.transform.position.y < target.y) {
-                achievementText.transform.Translate(Vector3.up * 10.0f * Time.deltaTime, Space.World);
+			gotAchievement = true;
+			rising = true;
+			raycastScript.GetComponent<RaycastScript>().firstBirdFound = false;
+			raycastScript.GetComponent<RaycastScript>().fiveBirdsFound = false; 
+			raycastScript.GetComponent<RaycastScript>().tenBirdsFound = false;
+			raycastScript.GetComponent<RaycastScript>().fifteenBirdsFound = false;
+			raycastScript.GetComponent<RaycastScript>().threeTypesFound = false;
+			raycastScript.GetComponent<RaycastScript>().threeLikeBirdsFound = false; 
+			raycastScript.GetComponent<RaycastScript>().rareBirdFound = false;
+			raycastScript.GetComponent<RaycastScript>().ufoFound = false;
+			raycastScript.GetComponent<RaycastScript>().bugFound = false;
+			raycastScript.GetComponent<RaycastScript>().nonbirdFound = false; 
+			raycastScript.GetComponent<RaycastScript>().sunFound = false;
+			raycastScript.GetComponent<RaycastScript>().nothingFound = false;
+
+		}
+
+		if (gotAchievement == true) {
+			if (achievementText.transform.localPosition.y < target.y && rising == true) {
+				achievementText.transform.Translate(Vector3.up * 2.5f, Space.World);
+				Debug.Log("rising");
 			}
 			else {
+				rising = false;
+				Debug.Log(achievementText.transform.localPosition.y);
+				Debug.Log("lowering");
 				time += Time.deltaTime;
-				if (time > 5) {
-					if (achievementText.transform.position != hide) {
-						// wait for 5 seconds after displaying the achievement, then reset the text and hide it
-                    	achievementText.transform.Translate(Vector3.up * Time.deltaTime * -1, Space.World);
-                    	achievementText.text = defaultText;
+			
+				// wait for 5 seconds after displaying the achievement, then reset the text and hide it
+				if (time > 5 && rising == false) {
+					if (achievementText.transform.localPosition.y > hide.y) {
+                   		achievementText.transform.Translate(Vector3.up * Time.deltaTime * -2.5f, Space.World);
+					}
+					else {
+						gotAchievement = false;
+						achievementText.text = defaultText;
 					}
 				}
 			}
