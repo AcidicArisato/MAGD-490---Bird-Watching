@@ -258,6 +258,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievementText: {fileID: 740323183}
+  defaultText: Achievement!
+  firstBirdFoundText: ' First Bird Found'
+  threeTypesFoundText: ' Three Species Found'
+  rareBirdFoundText: ' One in a Million'
+  ufoFoundText: ' Close Encounter'
+  bugFoundText: ' Debugging'
+  fiveBirdsFoundText: ' Found 5 Birds'
+  tenBirdsFoundText: ' Found 10 Birds'
+  fifteenBirdsFoundText: ' Found 15 Birds'
+  nonbirdFoundText: ' No Feathers'
+  sunFoundText: ' Sungazing'
+  nothingFoundText: ' Missing the Point'
+  threeLikeBirdsFoundText: ' Birds of a Feather'
+  gotAchievement: 0
+  rising: 0
 --- !u!114 &129478764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +624,18 @@ MonoBehaviour:
   sunFound: 0
   nothingFound: 0
   threeLikeBirdsFound: 0
+  displayFirstBirdFound: 0
+  displayThreeTypesFound: 0
+  displayRareBirdFound: 0
+  displayUfoFound: 0
+  displayBugFound: 0
+  displayFiveBirdsFound: 0
+  displayTenBirdsFound: 0
+  displayFifteenBirdsFound: 0
+  displayNonbirdFound: 0
+  displaySunFound: 0
+  displayNothingFound: 0
+  displayThreeLikeBirdsFound: 0
   isZoomed: 0
   mainCamera: {fileID: 926316473}
   zoom: {fileID: 52241137}
