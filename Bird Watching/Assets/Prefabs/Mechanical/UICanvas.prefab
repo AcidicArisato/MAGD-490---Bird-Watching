@@ -146,6 +146,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievementText: {fileID: 11439642}
+  defaultText: Achievement!
+  firstBirdFoundText: ' First Bird Found'
+  threeTypesFoundText: ' Three Species Found'
+  rareBirdFoundText: ' One in a Million'
+  ufoFoundText: ' Close Encounter'
+  bugFoundText: ' Debugging'
+  fiveBirdsFoundText: ' Found 5 Birds'
+  tenBirdsFoundText: ' Found 10 Birds'
+  fifteenBirdsFoundText: ' Found 15 Birds'
+  nonbirdFoundText: ' No Feathers'
+  sunFoundText: ' Sungazing'
+  nothingFoundText: ' Missing the Point'
+  threeLikeBirdsFoundText: ' Birds of a Feather'
   gotAchievement: 0
   rising: 0
 --- !u!114 &11472384

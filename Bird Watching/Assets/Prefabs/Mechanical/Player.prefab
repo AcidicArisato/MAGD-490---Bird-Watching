@@ -356,6 +356,18 @@ MonoBehaviour:
   sunFound: 0
   nothingFound: 0
   threeLikeBirdsFound: 0
+  displayFirstBirdFound: 0
+  displayThreeTypesFound: 0
+  displayRareBirdFound: 0
+  displayUfoFound: 0
+  displayBugFound: 0
+  displayFiveBirdsFound: 0
+  displayTenBirdsFound: 0
+  displayFifteenBirdsFound: 0
+  displayNonbirdFound: 0
+  displaySunFound: 0
+  displayNothingFound: 0
+  displayThreeLikeBirdsFound: 0
   isZoomed: 0
   mainCamera: {fileID: 2086526}
   zoom: {fileID: 0}
