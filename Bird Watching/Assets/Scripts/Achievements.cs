@@ -8,8 +8,8 @@ public class Achievements : MonoBehaviour {
 	private GameObject raycastScript;
 	public Text achievementText;
 	private float time = 0;
-	private Vector3 target = new Vector3(0, -100, 0);
-	private Vector3 hide = new Vector3(0, -250, 0);
+	private Vector3 target = new Vector3(0, -140, 0);
+	private Vector3 hide = new Vector3(0, -200, 0);
 
 	// strings for achievement titles
 	[HideInInspector]
@@ -30,71 +30,141 @@ public class Achievements : MonoBehaviour {
 	public bool gotAchievement = false;
 	public bool rising = false;
 
+	private List<string> displayQueue = new List<string>();
+	private int i = 0;
+
+	//private GameObject newText;
+
 	// Use this for initialization
 	void Start () {
 		raycastScript = GameObject.Find("Player");
+		achievementText.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (raycastScript.GetComponent<RaycastScript>().firstBirdFound == true) {
-			if (!achievementText.text.Contains(firstBirdFoundText))
-				achievementText.text += firstBirdFoundText;
+			//if (!achievementText.text.Contains(firstBirdFoundText))
+				//achievementText.text = defaultText + firstBirdFoundText;
+			if (!displayQueue.Contains(firstBirdFoundText))
+				displayQueue.Add(firstBirdFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + firstBirdFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().fiveBirdsFound == true) {
-			if (!achievementText.text.Contains(fiveBirdsFoundText))
-				achievementText.text += fiveBirdsFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().fiveBirdsFound == true) {
+			//if (!achievementText.text.Contains(fiveBirdsFoundText))
+				//achievementText.text = defaultText + fiveBirdsFoundText;
+			if (!displayQueue.Contains(fiveBirdsFoundText))
+				displayQueue.Add(fiveBirdsFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + fiveBirdsFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().tenBirdsFound == true) {
-			if (!achievementText.text.Contains(tenBirdsFoundText))
-				achievementText.text += tenBirdsFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().tenBirdsFound == true) {
+			//if (!achievementText.text.Contains(tenBirdsFoundText))
+				//achievementText.text = defaultText + tenBirdsFoundText;
+			if (!displayQueue.Contains(tenBirdsFoundText))
+				displayQueue.Add(tenBirdsFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + tenBirdsFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().fifteenBirdsFound == true) {
-			if (!achievementText.text.Contains(fifteenBirdsFoundText))
-			achievementText.text += fifteenBirdsFoundText;
-			
+		 
+		if (raycastScript.GetComponent<RaycastScript>().fifteenBirdsFound == true) {
+			//if (!achievementText.text.Contains(fifteenBirdsFoundText))
+				//achievementText.text = defaultText + fifteenBirdsFoundText;
+			if (!displayQueue.Contains(fifteenBirdsFoundText))
+				displayQueue.Add(fifteenBirdsFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + fifteenBirdsFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().threeTypesFound == true) {
-			if (!achievementText.text.Contains(fifteenBirdsFoundText))
-				achievementText.text += threeTypesFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().threeTypesFound == true) {
+			//if (!achievementText.text.Contains(threeTypesFoundText))
+				//achievementText.text = defaultText + threeTypesFoundText;
+			if (!displayQueue.Contains(threeTypesFoundText))
+				displayQueue.Add(threeTypesFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + threeTypesFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().threeLikeBirdsFound == true) {
-			if (!achievementText.text.Contains(threeLikeBirdsFoundText))
-				achievementText.text += threeLikeBirdsFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().threeLikeBirdsFound == true) {
+			//if (!achievementText.text.Contains(threeLikeBirdsFoundText))
+				//achievementText.text = defaultText + threeLikeBirdsFoundText;
+			if (!displayQueue.Contains(threeLikeBirdsFoundText))
+				displayQueue.Add(threeLikeBirdsFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + threeLikeBirdsFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().rareBirdFound == true) {
-			if (!achievementText.text.Contains(rareBirdFoundText))
-				achievementText.text += rareBirdFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().rareBirdFound == true) {
+			//if (!achievementText.text.Contains(rareBirdFoundText))
+				//achievementText.text = defaultText + rareBirdFoundText;
+			if (!displayQueue.Contains(rareBirdFoundText))
+				displayQueue.Add(rareBirdFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + rareBirdFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().ufoFound == true) {
-			if (!achievementText.text.Contains(ufoFoundText))
-				achievementText.text += ufoFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().ufoFound == true) {
+			//if (!achievementText.text.Contains(ufoFoundText))
+				//achievementText.text = defaultText + ufoFoundText;
+			if (!displayQueue.Contains(ufoFoundText))
+				displayQueue.Add(ufoFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + ufoFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().bugFound == true) {
-			if (!achievementText.text.Contains(bugFoundText))
-				achievementText.text += bugFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().bugFound == true) {
+			//if (!achievementText.text.Contains(bugFoundText))
+				//achievementText.text = defaultText + bugFoundText;
+			if (!displayQueue.Contains(bugFoundText))
+				displayQueue.Add(bugFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + bugFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().sunFound == true) {
-			if (!achievementText.text.Contains(sunFoundText))
-				achievementText.text += sunFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().sunFound == true) {
+			//if (!achievementText.text.Contains(sunFoundText))
+				//achievementText.text = defaultText + sunFoundText;
+			if (!displayQueue.Contains(sunFoundText))
+				displayQueue.Add(sunFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + sunFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().nonbirdFound == true) {
-			if (!achievementText.text.Contains(nonbirdFoundText))
-				achievementText.text += nonbirdFoundText;
-			
+
+		if (raycastScript.GetComponent<RaycastScript>().nonbirdFound == true) {
+			//if (!achievementText.text.Contains(nonbirdFoundText))
+				//achievementText.text = defaultText + nonbirdFoundText;
+			if (!displayQueue.Contains(nonbirdFoundText))
+				displayQueue.Add(nonbirdFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + nonbirdFoundText;*/
 		}
-		else if (raycastScript.GetComponent<RaycastScript>().nothingFound == true) {
-			if (!achievementText.text.Contains(nothingFoundText))
-				achievementText.text += nothingFoundText;
+
+		if (raycastScript.GetComponent<RaycastScript>().nothingFound == true) {
+			//if (!achievementText.text.Contains(nothingFoundText))
+				//achievementText.text = defaultText + nothingFoundText;
+			if (!displayQueue.Contains(nothingFoundText))
+				displayQueue.Add(nothingFoundText);
+			/*newText = new GameObject();
+			newText.AddComponent<Text>();
+			newText.GetComponent<Text>().text = defaultText + nothingFoundText;*/
 		}
+
+		//if (GameObject.Find("newText") != null)
+			//newText.transform.position = new Vector3(0, -250, 0);
 
 		if (raycastScript.GetComponent<RaycastScript>().displayFirstBirdFound == true || raycastScript.GetComponent<RaycastScript>().displayFiveBirdsFound == true || 
 			raycastScript.GetComponent<RaycastScript>().displayTenBirdsFound == true || raycastScript.GetComponent<RaycastScript>().displayFifteenBirdsFound == true || 
@@ -119,52 +189,41 @@ public class Achievements : MonoBehaviour {
 			raycastScript.GetComponent<RaycastScript>().displayNonbirdFound = false;
 		}
 
-		/*if (raycastScript.GetComponent<RaycastScript>().firstBirdFound == true || raycastScript.GetComponent<RaycastScript>().fiveBirdsFound == true || 
-			raycastScript.GetComponent<RaycastScript>().tenBirdsFound == true || raycastScript.GetComponent<RaycastScript>().fifteenBirdsFound == true ||
-			raycastScript.GetComponent<RaycastScript>().threeTypesFound == true || raycastScript.GetComponent<RaycastScript>().threeLikeBirdsFound == true || 
-			raycastScript.GetComponent<RaycastScript>().rareBirdFound == true || raycastScript.GetComponent<RaycastScript>().ufoFound == true ||
-			raycastScript.GetComponent<RaycastScript>().bugFound == true || raycastScript.GetComponent<RaycastScript>().nonbirdFound == true || 
-			raycastScript.GetComponent<RaycastScript>().sunFound == true || raycastScript.GetComponent<RaycastScript>().nothingFound == true) 
-		{
-			gotAchievement = true;
-			rising = true;
-			raycastScript.GetComponent<RaycastScript>().firstBirdFound = false;
-			raycastScript.GetComponent<RaycastScript>().fiveBirdsFound = false; 
-			raycastScript.GetComponent<RaycastScript>().tenBirdsFound = false;
-			raycastScript.GetComponent<RaycastScript>().fifteenBirdsFound = false;
-			raycastScript.GetComponent<RaycastScript>().threeTypesFound = false;
-			raycastScript.GetComponent<RaycastScript>().threeLikeBirdsFound = false; 
-			raycastScript.GetComponent<RaycastScript>().rareBirdFound = false;
-			raycastScript.GetComponent<RaycastScript>().ufoFound = false;
-			raycastScript.GetComponent<RaycastScript>().bugFound = false;
-			raycastScript.GetComponent<RaycastScript>().nonbirdFound = false; 
-			raycastScript.GetComponent<RaycastScript>().sunFound = false;
-			raycastScript.GetComponent<RaycastScript>().nothingFound = false;
-
-		}*/
-
 		if (gotAchievement == true) {
-			if (achievementText.transform.localPosition.y < target.y && rising == true) {
-				achievementText.transform.Translate(Vector3.up * 2.5f, Space.World);
-				//Debug.Log("rising");
-			}
-			else {
-				rising = false;
-				Debug.Log(achievementText.transform.localPosition.y);
-				//Debug.Log("lowering");
-				time += Time.deltaTime;
-			
-				// wait for 5 seconds after displaying the achievement, then reset the text and hide it
-				if (time > 5 && rising == false) {
-					if (achievementText.transform.localPosition.y > hide.y) {
-                   		achievementText.transform.Translate(Vector3.up * Time.deltaTime * -2.5f, Space.World);
-					}
-					else {
-						gotAchievement = false;
-						achievementText.text = defaultText;
-					}
-				}
-			}
+			achievementText.enabled = true;
+			DisplayAchievements(displayQueue, i);
 		}
 	} // end Update
+
+	public void DisplayAchievements(List<string> displayQueue, int counter) {
+		if (counter < displayQueue.Count) {
+			achievementText.text = defaultText + displayQueue[counter];
+			time += Time.deltaTime;
+			if (time > 5) {
+				//displayQueue.RemoveAt(counter);
+				counter++;
+				i = counter;
+				time = 0;
+				DisplayAchievements(displayQueue, counter);
+			}
+		}
+		else {
+			achievementText.enabled = false;
+			achievementText.text = "";
+			i = 0;
+			//gotAchievement = false;
+			raycastScript.GetComponent<RaycastScript>().displayFirstBirdFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayFiveBirdsFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayTenBirdsFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayFifteenBirdsFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayThreeTypesFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayRareBirdFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayThreeLikeBirdsFound = false;
+			raycastScript.GetComponent<RaycastScript>().displaySunFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayBugFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayUfoFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayNothingFound = false;
+			raycastScript.GetComponent<RaycastScript>().displayNonbirdFound = false;
+		}
+	} // end DisplayAchievements
 }

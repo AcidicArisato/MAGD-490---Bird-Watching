@@ -38,20 +38,26 @@ public class RaycastScript : MonoBehaviour {
 	private int typesFound = 0;
 	private List<string> typesList = new List<string>();
 	private List<string> achievementsList = new List<string>();
+	private List<string> rareList = new List<string>();
 	private bool gameOver = false;
 	public bool isZoomed = false;
 
 	public Camera mainCamera;
 	public GameObject zoom;
+	public GameObject check;
 
 	// Use this for initialization
 	void Start () {
 		achievementsScript = GameObject.Find("UICanvas");
 		zoom.SetActive(false);
+		rareList.Add("Bluejay");
+		rareList.Add("Sphere");
+		//check.GetComponent<Renderer>().enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log("typesFound: " + typesFound);
 		if (isZoomed == false && Input.GetKeyDown(KeyCode.Mouse1)) {
 			mainCamera.fieldOfView = 30.0f;
 			zoom.SetActive(true);	
@@ -70,11 +76,29 @@ public class RaycastScript : MonoBehaviour {
 
 			// check for achievement completion
 			if (Physics.Raycast(ray, out hit)) {
+				check.GetComponent<Renderer>().enabled = true;
+				float time = 0;
+				time += Time.deltaTime;
+				if (time > 2)
+					check.GetComponent<Renderer>().enabled = false;
 				thingFound = true;
 					
 				if (hit.transform.tag == "bird") {
 					if (!typesList.Contains(hit.transform.name)) {
 						birdsFound++; // if this bird hasn't already been found, increment number of birds found
+						typesList.Add(hit.transform.name); // add the bird to the list of bird types
+						//Debug.Log(typesList[typesList.Count - 1]);
+						typesFound++; // increment number of different types of birds found if the player has not yet found a bird of this type
+
+						if (typesFound == 3) {
+							threeTypesFound = true; // if the player has found three different types of birds, unlock the achievement
+							if (!achievementsList.Contains(achievementsScript.GetComponent<Achievements>().threeTypesFoundText)) {
+								achievementsList.Add(achievementsScript.GetComponent<Achievements>().threeTypesFoundText);
+								displayThreeTypesFound = true;
+								Debug.Log("Achievement! Found 3 Different Species");
+							}
+						}
+						Debug.Log("birdsFound: " + birdsFound);
 							
 						if (birdsFound == 1) {
 							firstBirdFound = true; // if this is the first bird found, unlock the achievement
@@ -109,6 +133,16 @@ public class RaycastScript : MonoBehaviour {
 							Debug.Log("Achievement! Found 15 Birds");
 						}
 
+						if (rareList.Contains(hit.transform.name)) {
+							birdsFound++;
+							rareBirdFound = true; // if the player finds a rare bird, unlock the achievement
+							if (!achievementsList.Contains(achievementsScript.GetComponent<Achievements>().rareBirdFoundText)) {
+								achievementsList.Add(achievementsScript.GetComponent<Achievements>().rareBirdFoundText);
+								displayRareBirdFound = true;
+							}
+							Debug.Log("Achievement! Found a Rare Bird");
+						}
+
 						if (!typesList.Contains(hit.transform.name)) {
 							typesList.Add(hit.transform.name); // add the bird to the list of bird types
 							//Debug.Log(typesList[typesList.Count - 1]);
@@ -136,8 +170,20 @@ public class RaycastScript : MonoBehaviour {
 							}
 						}
 					} // end type check
+					/*else {						
+						likeFound++; // otherwise, if the player has found this type of bird before, increment the number of like birds found...
+
+						if (likeFound == 3) {
+							threeLikeBirdsFound = true; // ...and if that number is three, unlock the achievement
+							if (!achievementsList.Contains(achievementsScript.GetComponent<Achievements>().threeLikeBirdsFoundText)) {
+								achievementsList.Add(achievementsScript.GetComponent<Achievements>().threeLikeBirdsFoundText);
+								displayThreeLikeBirdsFound = true;
+								Debug.Log("Achievement! Birds of a Feather");
+							}
+						}
+					}*/
 				} // end bird check
-				else if (hit.transform.tag == "rare") {
+				/*else if (hit.transform.tag == "rare") {
 					birdsFound++;
 					rareBirdFound = true; // if the player finds a rare bird, unlock the achievement
 					if (!achievementsList.Contains(achievementsScript.GetComponent<Achievements>().rareBirdFoundText)) {
@@ -145,7 +191,7 @@ public class RaycastScript : MonoBehaviour {
 						displayRareBirdFound = true;
 					}
 					Debug.Log("Achievement! Found a Rare Bird");
-				}
+				}*/
 				else if (hit.transform.tag == "ufo") {
 					ufoFound = true; // if the player finds the UFO, unlock the achievement
 					if (!achievementsList.Contains(achievementsScript.GetComponent<Achievements>().ufoFoundText)) {
