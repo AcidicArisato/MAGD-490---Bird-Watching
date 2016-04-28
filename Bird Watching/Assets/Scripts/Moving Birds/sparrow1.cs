@@ -10,6 +10,9 @@ public class sparrow1 : MonoBehaviour {
 	private Vector3 lastPos;
 
 	private float timer_1;
+	bool moving;
+
+	public Animator anim;
 
 	void Start () {
 
@@ -18,6 +21,8 @@ public class sparrow1 : MonoBehaviour {
 	
 
 	void Update () {
+
+		anim.SetBool ("moving", moving);
 
 		//Keeps track of time for 1st movement
 		timer_1 += Time.deltaTime;
@@ -33,10 +38,10 @@ public class sparrow1 : MonoBehaviour {
 		//For animation
 		if (lastPos == transform.position) {
 
-			//set animation to idle
+			moving = false;
 		} else {
 
-			//set animation to moving
+			moving = true;
 		}
 	}
 

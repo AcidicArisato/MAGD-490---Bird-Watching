@@ -13,6 +13,9 @@ public class bluejay1 : MonoBehaviour {
 	private float timer_2;
 
 	private bool en2ndRoute = false;
+	bool moving;
+
+	public Animator anim;
 
 	void Start () {
 
@@ -22,6 +25,8 @@ public class bluejay1 : MonoBehaviour {
 	
 
 	void Update () {
+
+		anim.SetBool ("moving", moving);
 
 		//Keeps track of time for 1st movement
 		timer_1 += Time.deltaTime;
@@ -52,10 +57,10 @@ public class bluejay1 : MonoBehaviour {
 		//For animation
 		if (lastPos == transform.position) {
 
-			//set animation to idle
+			moving = false;
 		} else {
 
-			//set animation to moving
+			moving = true;
 		}
 	}
 

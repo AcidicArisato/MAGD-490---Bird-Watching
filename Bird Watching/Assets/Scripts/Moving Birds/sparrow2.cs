@@ -11,6 +11,8 @@ public class sparrow2 : MonoBehaviour {
 
 	private float timer_1;
 
+	public Animator anim;
+
 	void Start () {
 
 		startPos = transform.position;
@@ -33,10 +35,10 @@ public class sparrow2 : MonoBehaviour {
 		//For animation
 		if (lastPos == transform.position) {
 
-			//set animation to idle
+			anim.SetBool ("moving", false);
 		} else {
 
-			//set animation to moving
+			anim.SetBool ("moving", true);
 		}
 	}
 

@@ -12,6 +12,8 @@ public class robin1 : MonoBehaviour {
 
 //	private bool en2ndRoute;
 
+	public Animator anim;
+
 	void Start () {
 
 		startPos = transform.position;
@@ -50,10 +52,10 @@ public class robin1 : MonoBehaviour {
 		//For animation
 		if (lastPos == transform.position) {
 
-			//set animation to idle
+			anim.SetBool ("moving", false);
 		} else {
 
-			//set animation to moving
+			anim.SetBool ("moving", true);
 		}
 	}
 
